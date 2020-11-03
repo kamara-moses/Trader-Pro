@@ -1,23 +1,23 @@
 {
-  "development": {
-    "username": "root",
-    "password": "password",
-    "database": "trading_accountDB",
-    "host": "127.0.0.1",
-    "dialect": "mysql"
-  },
-  "test": {
-    "username": "root",
-    "password": null,
-    "database": "database_test",
-    "host": "127.0.0.1",
-    "dialect": "mysql"
-  },
-  "production": {
-    "username": "wbb1v222iyg298py",
-    "password": "xq6n3by5wczg3hic" ,
-    "database": "trading_accountDB",
-    "host": "127.0.0.1git",
-    "dialect": "mysql"
-  }
+    "development": {
+        "username": "root",
+        "password": "password",
+        "database": "trading_accountDB",
+        "host": "127.0.0.1",
+        "dialect": "mysql"
+    },
+    "test": {
+        "username": "root",
+        "password": null,
+        "database": "database_test",
+        "host": "127.0.0.1",
+        "dialect": "mysql"
+    },
+    "production": {
+        "username": "wbb1v222iyg298py",
+        "password": "xq6n3by5wczg3hic",
+        "database": "trading_accountDB",
+        "host": "127.0.0.1git",
+        "dialect": "mysql"
+    }
 }

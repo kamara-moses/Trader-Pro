@@ -28,26 +28,25 @@ if (process.env.JAWSDB_URL) {
     connection = mysql.createConnection(process.env.JAWSDB_URL);
 } else {
     connection = mysql.createConnection({
-	host: "localhost",
-	port: 3306,
-	user: "root",
-	password: "password",
-	database: "trading_accountDB"
-  });
+        host: "localhost",
+        port: 3306,
+        user: "root",
+        password: "KyMyAr091217$",
+        database: "trading_accountDB"
+    });
 
-  connection.connect(function(err) {
-	if (err) {
-	  console.error("error connecting: " + err.stack);
-	  return;
-	}
-  
-git  });
+    connection.connect(function(err) {
+        if (err) {
+            console.error("error connecting: " + err.stack);
+            return;
+        }
+    });
 };
 
 app.get('/', function(req, res) {
-	res.render('index', {
-		test: request.body
-	});
+    res.render('index', {
+        test: request.body
+    });
 });
 
 
@@ -56,51 +55,51 @@ app.use(express.json())
 const users = []
 
 app.get('/users', (req, res) => {
-	res.json(users)
+    res.json(users)
 })
 
 app.post('/users', (req, res) => {
-	const user = {email: req.body.name, password: req.body.password}
-	users.push(user)
-	res.status(201).send()
+    const user = { email: req.body.name, password: req.body.password }
+    users.push(user)
+    res.status(201).send()
 });
 
 app.get('/watchlist', (req, res) => {
-	db.All_stock.findAll({}).then((data) => {
-		const names = [];
+    db.All_stock.findAll({}).then((data) => {
+        const names = [];
 
-		for(let i = 0; i < data.length; i++) {
-			
-			names.push({
-				id: data[i].dataValues.id,
-				name: data[i].dataValues.short_name
-			});
-		}
-		res.render('watchlist', { short_names: names });
-	})
-	
+        for (let i = 0; i < data.length; i++) {
+
+            names.push({
+                id: data[i].dataValues.id,
+                name: data[i].dataValues.short_name
+            });
+        }
+        res.render('watchlist', { short_names: names });
+    })
+
 });
 
 app.get('/watchlist', (req, res) => {
-   db.All_stock.findOne({id: req.body.drop}).then((data) => {
-	   const stocks = [];
+    db.All_stock.findOne({ id: req.body.drop }).then((data) => {
+        const stocks = [];
 
-	   for(let i = 0; i <data.length; i++) {
+        for (let i = 0; i < data.length; i++) {
 
-		   stocks.push({
-			   id: data[i].dataValues.id,
-			   name: data[i].dataValues.short_name,
-			   symbol: data[i].dataValues.stock_symbol,
-			   currentPrice: data[i].dataValues.stock_current_price,
-			   dailyHigh: data[i].dataValues.stock_daily_high,
-			   dailyLow: data[i].dataValues.stock_daily_low,
-			   yearHigh: data[i].dataValues.stock_year_high,
-			   yearLow: data[i].dataValues.stock_year_low
+            stocks.push({
+                id: data[i].dataValues.id,
+                name: data[i].dataValues.short_name,
+                symbol: data[i].dataValues.stock_symbol,
+                currentPrice: data[i].dataValues.stock_current_price,
+                dailyHigh: data[i].dataValues.stock_daily_high,
+                dailyLow: data[i].dataValues.stock_daily_low,
+                yearHigh: data[i].dataValues.stock_year_high,
+                yearLow: data[i].dataValues.stock_year_low
 
-		   });
-		   
-	   }
-   })  
+            });
+
+        }
+    })
 });
 
 //routes
@@ -110,11 +109,11 @@ require("./routes/all_stock_api_routes.js")(app);
 require("./routes/users_api_routes.js")(app);
 
 
-    // Set static folder
-	app.use(express.static(path.join(__dirname, 'public')));
+// Set static folder
+app.use(express.static(path.join(__dirname, 'public')));
 
-	db.sequelize.sync({force: true}).then(() => {
-	app.listen(PORT, () => console.log('Server listening on: http://localhost:', + PORT))
-	})
+db.sequelize.sync({ force: true }).then(() => {
+    app.listen(PORT, () => console.log('Server listening on: http://localhost:', +PORT))
+})
 
 //});
